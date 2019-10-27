@@ -76,7 +76,6 @@ before_script:
 # non-zero when a test fails (which notifies Travis the build failed).
 script:
   - source /opt/ros/$ROS_DISTRO/setup.bash
-  - sudo cp -r ./beginner_tutorials ~/catkin_ws/src
   - cd ~/catkin_ws
   - catkin_make #$( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
   # Run the tests, ensuring the path is set correctly.
