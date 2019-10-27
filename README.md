@@ -20,5 +20,4 @@ cp -r ./beginner_tutorials ~/catkin_ws/src/
 cd ~/catkin_ws/
 catkin_make
 ```
-See more in .travis.yml file.
 
