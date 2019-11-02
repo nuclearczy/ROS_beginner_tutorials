@@ -1,0 +1,30 @@
+<launch>
+
+   <arg
+      name = "talker_name"
+      default = "Zuyang Cao" 
+   />
+   <arg
+      name = "message_content"
+      default = "Hello World"
+   />
+
+   <node 
+      pkg="beginner_tutorials"
+      type="talker"
+      name="talking_node"
+      respawn = "true"
+      output = "screen"
+   >
+      <param name="talker_name" value="$(arg talker_name)" />
+      <param name="message_content" value="$(arg message_content)" />
+   </node>
+   
+   <node 
+      pkg="beginner_tutorials"
+      type="listener"
+      name="listening_node"
+      respawn = "true"
+      output = "screen"
+   />
+</launch>
