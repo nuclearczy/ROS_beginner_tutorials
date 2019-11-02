@@ -16,8 +16,13 @@ bool listenStatus = true;
  *  @return  boolean true 
  */
 bool toggleListenStatus (std_srvs::Empty::Request &req, std_srvs::Empty::Response &resp){
+  ROS_DEBUG_STREAM("Starting to change status. ");
   listenStatus = !listenStatus ;
   ROS_WARN_STREAM("Now entering " << (listenStatus ? "Listening" : "Deaf") << " status." << std::endl);
+  if (!listenStatus){
+    ROS_ERROR_STREAM("HELP!!");
+    ROS_FATAL_STREAM("I AM DEAF!!");
+  }
   return true;
 }
 
