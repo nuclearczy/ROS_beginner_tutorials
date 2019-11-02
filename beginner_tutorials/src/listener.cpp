@@ -15,11 +15,14 @@ bool listenStatus = true;
  *  @param   Service response type variable
  *  @return  boolean true 
  */
-bool toggleListenStatus (std_srvs::Empty::Request &req, std_srvs::Empty::Response &resp){
+// Const will fail the build, but this will cause cpplint error.
+bool toggleListenStatus(std_srvs::Empty::Request &req,
+std_srvs::Empty::Response &resp) {
   ROS_DEBUG_STREAM("Starting to change status. ");
-  listenStatus = !listenStatus ;
-  ROS_WARN_STREAM("Now entering " << (listenStatus ? "Listening" : "Deaf") << " status." << std::endl);
-  if (!listenStatus){
+  listenStatus = !listenStatus;
+  ROS_WARN_STREAM("Now entering " << (listenStatus ? "Listening" : "Deaf")
+  << " status." << std::endl);
+  if (!listenStatus) {
     ROS_ERROR_STREAM("HELP!!");
     ROS_FATAL_STREAM("I AM DEAF!!");
   }
@@ -31,7 +34,7 @@ bool toggleListenStatus (std_srvs::Empty::Request &req, std_srvs::Empty::Respons
  *  @param   Msg type message
  */
 void chatterCallback(const std_msgs::String::ConstPtr& msg) {
-  if (listenStatus){
+  if (listenStatus) {
     ROS_INFO_STREAM("I heard: " << msg->data);
   }
 }
@@ -42,16 +45,11 @@ void chatterCallback(const std_msgs::String::ConstPtr& msg) {
  *  @return  0 
  */
 int main(int argc, char **argv) {
-  
   ros::init(argc, argv, "listener");
-
   ros::NodeHandle nh;
-
-  ros::ServiceServer server = nh.advertiseService("toggle_listen_status", &toggleListenStatus);
-
+  ros::ServiceServer server = nh.advertiseService("toggle_listen_status",
+  &toggleListenStatus);
   ros::Subscriber sub = nh.subscribe("chatter", 1000, chatterCallback);
-
   ros::spin();
-
   return 0;
 }
