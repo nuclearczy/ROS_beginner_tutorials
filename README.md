@@ -1,3 +1,4 @@
+
 # ROS_beginner_tutorials
 
 [![Build Status](https://travis-ci.com/nuclearczy/ROS_beginner_tutorials.svg?branch=master)](https://travis-ci.com/nuclearczy/ROS_beginner_tutorials)
@@ -26,6 +27,12 @@ source devel/setup.bash
 
 ## Run the Code
 
+In terminal A:
+``` bash
+roscore
+```
+
+In terminal B (all the rest part):
 ``` bash
 roslaunch beginner_tutorials TalkAndListen.launch
 ```
@@ -54,4 +61,68 @@ After launched the listener_node, a toggle_listen_status service can be called t
 rosservice call /toggle_listen_status
 ```
 
+## TF Frames
+
+Run commands in separate terminals:
+
+``` bash
+rosrun beginner_tutorials talker
+```
+Inspect tf frames:
+``` bash
+rosrun tf tf_echo /world /talk
+```
+To inspect the visualized graph:
+``` bash
+rosrun rqt_tf_tree rqt_tf_tree 
+```
+To save graph as pdf:
+``` bash
+rosrun tf view_frames
+```
+
+## ROSTest
+
+First run the talker node:
+
+``` bash
+rosrun beginner_tutorials talker
+```
+To compile and run the tests:
+
+``` bash
+catkin_make run_tests_beginner_tutorials
+```
+After complie completes, run:
+``` bash
+rostest beginner_tutorials test.launch
+```
+
+or
+
+``` bash
+rosrun beginner_tutorials test_talker 
+```
+
+## ROS Bag
+
+Use ROS bag to record topics info:
+``` bash
+roslaunch beginner_tutorials TalkAndListen.launch record:=enable
+```
+
+To inspect recorded ROS bag info:
+``` bash
+rosbag info talker.bag
+```
+
+To replay the recorded ROS bag, first run listener node:
+``` bash
+rosrun beginner_tutorials listener
+```
+
+Then start the replay:
+``` bash
+rosbag play talker.bag
+```
 
