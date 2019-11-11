@@ -18,7 +18,7 @@ bool listenStatus = true;
 // Const will fail the build, but this will cause cpplint error.
 bool toggleListenStatus(std_srvs::Empty::Request &req,
 std_srvs::Empty::Response &resp) {
-  ROS_DEBUG_STREAM("Starting to change status. ");
+  ROS_DEBUG_STREAM("Starting to change status.");
   listenStatus = !listenStatus;
   ROS_WARN_STREAM("Now entering " << (listenStatus ? "Listening" : "Deaf")
   << " status." << std::endl);
