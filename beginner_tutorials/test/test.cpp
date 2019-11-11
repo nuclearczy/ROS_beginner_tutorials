@@ -34,7 +34,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF 
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
-
 #include <tf/transform_listener.h>
 #include <ros/ros.h>
 #include <ros/service_client.h>

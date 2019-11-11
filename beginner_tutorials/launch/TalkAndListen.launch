@@ -8,6 +8,11 @@
       name = "message_content"
       default = "Hello World"
    />
+   
+   <arg
+    name  ="record"
+    default = "disable"
+   />
 
    <node 
       pkg="beginner_tutorials"
@@ -26,5 +31,13 @@
       name="listening_node"
       respawn = "true"
       output = "screen"
+   />
+
+   <node
+      name = "rosbag"
+      pkg = "rosbag"
+      type = "record"
+      args = "-a -O $(find beginner_tutorials)/results/talker.bag"
+      if = "$(eval record == 'enable')"
    />
 </launch>
